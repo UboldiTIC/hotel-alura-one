@@ -1,2 +1,2 @@
 # hotel-alura-one
-Proyecto en Java - Desafio del programa ONE - Oracle.
+Proyecto en Java - Desafio del programa ONE - Oracle Next Education
