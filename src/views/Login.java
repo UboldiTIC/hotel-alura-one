@@ -32,8 +32,11 @@ public class Login extends JFrame {
 
 	/**
 	 * Launch the application.
+	 * 
+	 * Bloqueado temporalmente para probar el backend. 
+	 * 
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -44,7 +47,7 @@ public class Login extends JFrame {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the frame.

@@ -1,3 +1,8 @@
+### Notas:
+- Método Main en **Login.java** del paquete **views** temporalmente comentado para testear Backend.
+- Método Main en **MenuPrincipal.java** del paquete **views** temporalmente comentado para testear Backend.
+
+
 # hotel-alura-one
 Proyecto en Java - Desafio del programa ONE - Oracle Next Education
 
