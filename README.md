@@ -10,4 +10,6 @@ Este proyecto fue realizado como desafio que forma parte del Programa ONE de for
 
 La interfáz gráfica fue provista por el programa para facilitar el desarrollo Backend. La misma fue realizada con el IDE Eclipse, por este motivo, para el desarrollo Backend se continuó utilizando el mismo IDE.
 
-El desafío comienza con la creación de la base de datos MySQL a partir de un diagrama Entidad Relación ofrecido como punto de partida, al cual, se le pueden hacer modificaciones. En esta etapa se utilizó Workbench.
+El desafío comienza con la creación de la base de datos MySQL a partir de un diagrama Entidad Relación ofrecido como punto de partida, al cual, se le pueden hacer modificaciones. En esta etapa se utilizó Workbench. 
+
+La conexión con la Base de Datos se realiza mediante JDBC.

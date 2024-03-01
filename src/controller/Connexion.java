@@ -11,9 +11,9 @@ public class Connexion {
 	        try {
 	            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel_alura", "root", "nuevaKatu@Dante9");
 	            //Probar conexión:
-	            if(connection != null){
+	            /*if(connection != null){
 	                System.out.println("conexión exitosa");
-	            }
+	            }*/
 	        } catch (SQLException e) {
 	            System.out.println(e);
 	        }
