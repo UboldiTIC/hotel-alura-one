@@ -1,6 +1,6 @@
 package model;
 
-public class Huespedes {
+public class Huesped {
 	
 	int id;
 	String nombre;
@@ -10,10 +10,10 @@ public class Huespedes {
 	int telefono;
 	int id_reserva;
 	
-	public Huespedes() {
+	public Huesped() {
 	}
 
-	public Huespedes(int id, String nombre, String apellido, String fecha_de_nacimiento, String nacionalidad,
+	public Huesped(int id, String nombre, String apellido, String fecha_de_nacimiento, String nacionalidad,
 			int telefono, int id_reserva) {
 		this.id = id;
 		this.nombre = nombre;

@@ -1,6 +1,6 @@
 package model;
 
-public class Reservas {
+public class Reserva {
 	
 	int id;
 	String fecha_entrada;
@@ -8,10 +8,10 @@ public class Reservas {
 	double valor;
 	String forma_pago;
 	
-	public Reservas() {
+	public Reserva() {
 	}
 	
-	public Reservas(int id, String fecha_entrada, String fecha_salida, double valor, String forma_pago) {
+	public Reserva(int id, String fecha_entrada, String fecha_salida, double valor, String forma_pago) {
 		this.id = id;
 		this.fecha_entrada = fecha_entrada;
 		this.fecha_salida = fecha_salida;
