@@ -16,15 +16,17 @@ public class HuespedDAO {
 			PreparedStatement ps=null;
 			
 			try {
-				String query = "INSERT INTO huespedes(`nombre`, `apellido`, `telefono`) VALUES ('Valeria', 'Rios', '558782')";
+				String query = "INSERT INTO huespedes(`nombre`, `apellido`, `telefono`) VALUES (?, ?, ?)";
 				ps=connexion.prepareStatement(query);
-				/*
-				 * ps.setString(0, huesped.getNombre()); ps.setString(1, huesped.getApellido());
-				 * //ps.setString(3, huesped.getNacionalidad()); ps.setString(2,
-				 * huesped.getTelefono());
-				 */
+				
+				System.out.println("En clase Dao, los datos son: " + huesped.getNombre() + huesped.getApellido() + huesped.getTelefono());
+			
+				ps.setString(1, huesped.getNombre());
+				ps.setString(2, huesped.getApellido());
+				  //ps.setString(3, huesped.getNacionalidad()); 
+				ps.setString(3, huesped.getTelefono()); 
 				ps.executeUpdate();
-				System.err.println("Nuevo huesped agregado");
+				System.out.println("Nuevo huesped agregado");
 			} catch (SQLException ex) {
 				System.out.println(ex);
 			}

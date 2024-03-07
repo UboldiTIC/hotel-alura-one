@@ -25,7 +25,7 @@ import java.awt.Toolkit;
 import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
 import model.Huesped;
-import controller.HuespedService;
+import controller.HuespedDAO;
 
 @SuppressWarnings("serial")
 public class RegistroHuesped extends JFrame {
@@ -255,15 +255,21 @@ public class RegistroHuesped extends JFrame {
 		btnguardar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				//Lee los datos ingresados:
 				String name = txtNombre.getText();
 				String surname = txtApellido.getText();
 				String phone = txtTelefono.getText();
-				System.err.printf("El nombre es " + name + " " + surname + " " + phone);
-				System.err.println(" ");
-				
-				HuespedService huesped = new HuespedService();
-				huesped.guardarHuesped(name, surname, phone);
-				
+				System.out.printf("El nombre es " + name + " " + surname + " " + phone);
+				System.out.println(" ");
+				//Envía los datos al modelo
+				Huesped huesped1 = new Huesped();
+				huesped1.setNombre(name);
+				huesped1.setApellido(surname);
+				huesped1.setTelefono(phone);
+				System.out.println("Los datos son: " + huesped1.getNombre() + huesped1.getApellido() + huesped1.getTelefono());
+				//Llama a la clase DAO y los carga en la DB
+				HuespedDAO huespedDao = new HuespedDAO();
+				HuespedDAO.crearHuespedDB(huesped1);
 			}
 		});
 		btnguardar.setLayout(null);
