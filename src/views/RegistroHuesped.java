@@ -24,6 +24,8 @@ import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
+import model.Huesped;
+import controller.HuespedService;
 
 @SuppressWarnings("serial")
 public class RegistroHuesped extends JFrame {
@@ -42,7 +44,7 @@ public class RegistroHuesped extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -53,7 +55,7 @@ public class RegistroHuesped extends JFrame {
 				}
 			}
 		});
-	}*/
+	}
 
 	/**
 	 * Create the frame.
@@ -253,12 +255,30 @@ public class RegistroHuesped extends JFrame {
 		btnguardar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				String name = txtNombre.getText();
+				String surname = txtApellido.getText();
+				String phone = txtTelefono.getText();
+				System.err.printf("El nombre es " + name + " " + surname + " " + phone);
+				System.err.println(" ");
+				
+				HuespedService huesped = new HuespedService();
+				huesped.guardarHuesped(name, surname, phone);
+				
 			}
 		});
 		btnguardar.setLayout(null);
 		btnguardar.setBackground(new Color(12, 138, 199));
 		contentPane.add(btnguardar);
 		btnguardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+		
+		
+		
+		//BOTON GUARDAR PARA REGISTRAR HUESPED.
+			//LEER LOS LABELS
+			//SETEAR LOS PARAMETROS DE HUESPED; TAL VEZ LLAMAR LOS MÉTODOS DE UNA CLASE HuespedService; O directamente enviar los parámetros a Huesped DAO.
+		
+		
+		
 		
 		JLabel labelGuardar = new JLabel("GUARDAR");
 		labelGuardar.setHorizontalAlignment(SwingConstants.CENTER);
