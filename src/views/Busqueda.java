@@ -6,6 +6,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+
+import controller.HuespedDAO;
+
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -42,7 +45,7 @@ public class Busqueda extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -53,7 +56,7 @@ public class Busqueda extends JFrame {
 				}
 			}
 		});
-	}*/
+	}
 
 	/**
 	 * Create the frame.
@@ -212,13 +215,19 @@ public class Busqueda extends JFrame {
 		separator_1_2.setBounds(539, 159, 193, 2);
 		contentPane.add(separator_1_2);
 		
+		//BOTÓN BUSCAR:
 		JPanel btnbuscar = new JPanel();
 		btnbuscar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				String apellido_buscar = txtBuscar.getText();
+				HuespedDAO huespedDao = new HuespedDAO();
+				HuespedDAO.buscarHuespedDB(apellido_buscar);
 
 			}
 		});
+		
+		
 		btnbuscar.setLayout(null);
 		btnbuscar.setBackground(new Color(12, 138, 199));
 		btnbuscar.setBounds(748, 125, 122, 35);

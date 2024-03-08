@@ -250,6 +250,7 @@ public class RegistroHuesped extends JFrame {
 		separator_1_2_5.setBackground(new Color(12, 138, 199));
 		contentPane.add(separator_1_2_5);
 		
+		//Botón Guardar: 
 		JPanel btnguardar = new JPanel();
 		btnguardar.setBounds(723, 560, 122, 35);
 		btnguardar.addMouseListener(new MouseAdapter() {
@@ -270,21 +271,15 @@ public class RegistroHuesped extends JFrame {
 				//Llama a la clase DAO y los carga en la DB
 				HuespedDAO huespedDao = new HuespedDAO();
 				HuespedDAO.crearHuespedDB(huesped1);
+				
+//Falta agregar: Fecha de nacimiento, Nacionalidad, Número de reserva y establecer filtros para ingresar datos válidos.
+//Estos datos deben ser agregados al modelo y a la db.
 			}
 		});
 		btnguardar.setLayout(null);
 		btnguardar.setBackground(new Color(12, 138, 199));
 		contentPane.add(btnguardar);
 		btnguardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-		
-		
-		
-		//BOTON GUARDAR PARA REGISTRAR HUESPED.
-			//LEER LOS LABELS
-			//SETEAR LOS PARAMETROS DE HUESPED; TAL VEZ LLAMAR LOS MÉTODOS DE UNA CLASE HuespedService; O directamente enviar los parámetros a Huesped DAO.
-		
-		
-		
 		
 		JLabel labelGuardar = new JLabel("GUARDAR");
 		labelGuardar.setHorizontalAlignment(SwingConstants.CENTER);
