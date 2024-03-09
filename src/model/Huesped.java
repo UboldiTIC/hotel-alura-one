@@ -2,7 +2,7 @@ package model;
 
 public class Huesped {
 	
-	//int id;
+	int id;
 	String nombre;
 	String apellido;
 	//String fecha_de_nacimiento;
@@ -14,8 +14,8 @@ public class Huesped {
 	}
 
 	public Huesped(String nombre, String apellido,
-			String telefono) {
-		//this.id = id;
+			String telefono, int id) {
+		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		//this.fecha_de_nacimiento = fecha_de_nacimiento;
@@ -24,11 +24,11 @@ public class Huesped {
 		//this.id_reserva = id_reserva;
 	}
 
-	/*
-	 * public int getId() { return id; }
-	 * 
-	 * public void setId(int id) { this.id = id; }
-	 */
+	
+	  public int getId() { return id; }
+	  
+	  public void setId(int id) { this.id = id; }
+	 
 
 	public String getNombre() {
 		return nombre;
