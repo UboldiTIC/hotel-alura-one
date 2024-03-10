@@ -9,6 +9,7 @@ import model.Huesped;
 
 public class HuespedDAO {
 	
+//CREAR HUESPED	
 	public static void crearHuespedDB(Huesped huesped) {
 		Connexion db_connexion = new Connexion();
 		
@@ -37,6 +38,7 @@ public class HuespedDAO {
 		
 	}
 	
+//BUSCAR HUESPED	
 	public static void buscarHuespedDB(String apellido_buscar) {
 		System.out.println("El apellido a buscar es: " + apellido_buscar);
         Connexion db_connexion = new Connexion();
