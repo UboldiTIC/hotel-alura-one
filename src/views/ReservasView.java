@@ -25,6 +25,11 @@ import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+import controller.HuespedDAO;
+import controller.ReservaDAO;
+import model.Huesped;
+import model.Reserva;
+
 
 @SuppressWarnings("serial")
 public class ReservasView extends JFrame {
@@ -41,7 +46,7 @@ public class ReservasView extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -52,7 +57,7 @@ public class ReservasView extends JFrame {
 				}
 			}
 		});
-	}*/
+	}
 
 	/**
 	 * Create the frame.
@@ -153,7 +158,8 @@ public class ReservasView extends JFrame {
 		separator_1.setBounds(68, 362, 289, 2);
 		separator_1.setBackground(SystemColor.textHighlight);
 		panel.add(separator_1);
-												
+
+//BOTON SALIR:		
 		// Componentes para dejar la interfaz con estilo Material Design
 		JPanel btnexit = new JPanel();
 		btnexit.addMouseListener(new MouseAdapter() {
@@ -204,7 +210,8 @@ public class ReservasView extends JFrame {
 		header.setLayout(null);
 		header.setBackground(Color.WHITE);
 		panel.add(header);
-		
+
+//BOTON ATRAS		
 		JPanel btnAtras = new JPanel();
 		btnAtras.addMouseListener(new MouseAdapter() {
 			@Override
@@ -243,6 +250,7 @@ public class ReservasView extends JFrame {
 		
 		
 		//Campos que guardaremos en la base de datos
+//FECHA ENTRADA:		
 		txtFechaEntrada = new JDateChooser();
 		txtFechaEntrada.getCalendarButton().setBackground(SystemColor.textHighlight);
 		txtFechaEntrada.getCalendarButton().setIcon(new ImageIcon(ReservasView.class.getResource("/imagenes/icon-reservas.png")));
@@ -255,6 +263,7 @@ public class ReservasView extends JFrame {
 		txtFechaEntrada.setFont(new Font("Roboto", Font.PLAIN, 18));
 		panel.add(txtFechaEntrada);
 
+//FECHA SALIDA:
 		txtFechaSalida = new JDateChooser();
 		txtFechaSalida.getCalendarButton().setIcon(new ImageIcon(ReservasView.class.getResource("/imagenes/icon-reservas.png")));
 		txtFechaSalida.getCalendarButton().setFont(new Font("Roboto", Font.PLAIN, 11));
@@ -262,16 +271,21 @@ public class ReservasView extends JFrame {
 		txtFechaSalida.getCalendarButton().setBounds(267, 1, 21, 31);
 		txtFechaSalida.setBackground(Color.WHITE);
 		txtFechaSalida.setFont(new Font("Roboto", Font.PLAIN, 18));
+		
+//VALOR:		
 		txtFechaSalida.addPropertyChangeListener(new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent evt) {
 				//Activa el evento, después del usuario seleccionar las fechas se debe calcular el valor de la reserva
 			}
 		});
+		
+		
 		txtFechaSalida.setDateFormatString("yyyy-MM-dd");
 		txtFechaSalida.getCalendarButton().setBackground(SystemColor.textHighlight);
 		txtFechaSalida.setBorder(new LineBorder(new Color(255, 255, 255), 0));
 		panel.add(txtFechaSalida);
-
+		
+//VALOR: Debe mostrarlo en el campo y debe enviarlo a la DB cuando se presiona Siguiente. 
 		txtValor = new JTextField();
 		txtValor.setBackground(SystemColor.text);
 		txtValor.setHorizontalAlignment(SwingConstants.CENTER);
@@ -283,7 +297,7 @@ public class ReservasView extends JFrame {
 		panel.add(txtValor);
 		txtValor.setColumns(10);
 
-
+//FORMA DE PAGO
 		txtFormaPago = new JComboBox();
 		txtFormaPago.setBounds(68, 417, 289, 38);
 		txtFormaPago.setBackground(SystemColor.text);
@@ -292,6 +306,8 @@ public class ReservasView extends JFrame {
 		txtFormaPago.setModel(new DefaultComboBoxModel(new String[] {"Tarjeta de Crédito", "Tarjeta de Débito", "Dinero en efectivo"}));
 		panel.add(txtFormaPago);
 
+		
+//BOTON SIGUIENTE:		
 		JPanel btnsiguiente = new JPanel();
 		btnsiguiente.addMouseListener(new MouseAdapter() {
 			@Override
@@ -299,6 +315,37 @@ public class ReservasView extends JFrame {
 				if (ReservasView.txtFechaEntrada.getDate() != null && ReservasView.txtFechaSalida.getDate() != null) {		
 					RegistroHuesped registro = new RegistroHuesped();
 					registro.setVisible(true);
+					
+					//Lee los datos ingresados:
+					/*
+					 * String fecha_entrada = txtFechaEntrada.getDateFormatString(); String
+					 * fecha_salida = txtFechaSalida.getDateFormatString(); Double valor = 10.00;
+					 * String forma_pago = txtFormaPago.getActionCommand();
+					 * System.out.printf("La fecha de entrada es: " + fecha_entrada +
+					 * ". La fecha de salida es: " + fecha_salida + ". El valor a pagar es:  " +
+					 * valor + ". El medio de pago es: " + forma_pago);
+					 */		
+					
+					String fecha_entrada = "2024-03-11";
+					String fecha_salida = "2024-03-12";
+					Double valor = 10.00;
+					String forma_pago = "Credit Card";
+					System.out.printf("La fecha de entrada es: " + fecha_entrada + ". La fecha de salida es: " + fecha_salida + ". El valor a pagar es:  " + valor + ". El medio de pago es: " + forma_pago);
+					
+					
+					//Envía los datos al modelo
+					Reserva reserva = new Reserva();
+					reserva.setFecha_entrada(fecha_entrada);
+					reserva.setFecha_salida(fecha_salida);
+					reserva.setValor(valor);
+					reserva.setForma_pago(forma_pago);
+					System.out.println(" ");
+					System.out.println("Los datos son: " + reserva.getFecha_entrada() + reserva.getFecha_salida() + reserva.getValor() + reserva.getForma_pago());
+					
+					//Llama a la clase DAO y los carga en la DB
+					ReservaDAO reservaDAO = new ReservaDAO();
+					reservaDAO.crearReservaDB(reserva);
+			
 				} else {
 					JOptionPane.showMessageDialog(null, "Debes llenar todos los campos.");
 				}

@@ -4,6 +4,7 @@ package controller;
 //import model.Huesped;
 
 
+
 public class MainTest {
 	
 	public static void main(String[] args) {
@@ -18,6 +19,8 @@ public class MainTest {
 		 * println("La clase huesped contiene los siguiente valores: Nombre - " +
 		 * prueba1 + "Apellido - " + prueba2 + "Telefono - " + prueba3);
 		 */
+		
+		
 	
 	
 	
