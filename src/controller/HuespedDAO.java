@@ -4,8 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.ArrayList;
 
 import model.Huesped;
+import views.Busqueda;
 
 public class HuespedDAO {
 	
@@ -40,8 +43,13 @@ public class HuespedDAO {
 	
 //BUSCAR HUESPED	
 	public static void buscarHuespedDB(String apellido_buscar) {
-		System.out.println("El apellido a buscar es: " + apellido_buscar);
-        Connexion db_connexion = new Connexion();
+		//System.out.println("El apellido a buscar es: " + apellido_buscar);
+        
+		//Obtener la lista de objetos Huesped
+		List<Huesped> lista_huespedes = new ArrayList<>(); 
+		
+		
+		Connexion db_connexion = new Connexion();
         PreparedStatement ps=null;
         ResultSet rs=null;
        
@@ -56,25 +64,38 @@ public class HuespedDAO {
 			
 			while (rs.next()) {
 				Huesped huesped = new Huesped();
-				//System.out.println("El nombre del huesped es: " + rs.getString("nombre"));
-				huesped.setNombre(rs.getString("nombre"));
-				//System.out.println("El apellido del huesped es: " + rs.getString("apellido"));
-				huesped.setApellido(rs.getString("apellido"));
-				//System.out.println("El telefono del huesped es: " + rs.getString("telefono"));
-				huesped.setTelefono(rs.getString("telefono"));
-				//System.out.println("ID: " + rs.getInt("id"));
 				huesped.setId(rs.getInt("id"));
+				huesped.setNombre(rs.getString("nombre"));
+				huesped.setApellido(rs.getString("apellido"));
+				huesped.setTelefono(rs.getString("telefono"));
 				
-				System.out.println("ID: " + huesped.getId());
-				System.out.println("Nombre: " + huesped.getNombre());
-				System.out.println("Apellido: " + huesped.getApellido());
-				System.out.println("Telefono: " + huesped.getTelefono());
+				lista_huespedes.add(huesped);
+				
+				
+				//System.out.println("El nombre del huesped es: " + rs.getString("nombre"));
+				//huesped.setNombre(rs.getString("nombre"));
+				//System.out.println("El apellido del huesped es: " + rs.getString("apellido"));
+				//huesped.setApellido(rs.getString("apellido"));
+				//System.out.println("El telefono del huesped es: " + rs.getString("telefono"));
+				//huesped.setTelefono(rs.getString("telefono"));
+				//System.out.println("ID: " + rs.getInt("id"));
+				//huesped.setId(rs.getInt("id"));
+				
+				//System.out.println("ID: " + huesped.getId());
+				//System.out.println("Nombre: " + huesped.getNombre());
+				//System.out.println("Apellido: " + huesped.getApellido());
+				//System.out.println("Telefono: " + huesped.getTelefono());
 			}
+			
+			Busqueda busqueda = new Busqueda();
+			busqueda.cargarHuespedTabla(lista_huespedes);
+			System.out.println("La lista en HuespedDAO: " + lista_huespedes);
 			
 		} catch (SQLException e) {
 			System.out.println("No se pudieron buscar los huespedes");
 			System.out.println(e);
 		}
+		
 		
 	}
 

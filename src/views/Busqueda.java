@@ -28,6 +28,7 @@ import javax.swing.ListSelectionModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import model.Huesped;
 
 @SuppressWarnings("serial")
 public class Busqueda extends JFrame {
@@ -41,6 +42,7 @@ public class Busqueda extends JFrame {
 	private JLabel labelAtras;
 	private JLabel labelExit;
 	int xMouse, yMouse;
+	
 
 	/**
 	 * Launch the application.
@@ -120,6 +122,9 @@ public class Busqueda extends JFrame {
 		modeloHuesped.addColumn("Nacionalidad");
 		modeloHuesped.addColumn("Telefono");
 		modeloHuesped.addColumn("Número de Reserva");
+		
+		//modeloHuesped.addRow(fila);
+		
 		JScrollPane scroll_tableHuespedes = new JScrollPane(tbHuespedes);
 		panel.addTab("Huéspedes", new ImageIcon(Busqueda.class.getResource("/imagenes/pessoas.png")), scroll_tableHuespedes, null);
 		scroll_tableHuespedes.setVisible(true);
@@ -228,7 +233,7 @@ public class Busqueda extends JFrame {
 				String apellido_buscar = txtBuscar.getText();
 				HuespedDAO huespedDao = new HuespedDAO();
 				HuespedDAO.buscarHuespedDB(apellido_buscar);
-
+				//cargarHuespedTabla(null); // Aca está el error.
 			}
 		});
 		
@@ -291,4 +296,29 @@ public class Busqueda extends JFrame {
 	        int y = evt.getYOnScreen();
 	        this.setLocation(x - xMouse, y - yMouse);
 }
+
+	    
+//Ver si sirve para cargar la lista, así no trae datos.	    
+	    public void cargarHuespedTabla(List<Huesped> lista_huespedes) {
+	    	
+	    	  //System.out.println("La lista en cargarHuespedTabla: " + lista_huespedes);
+			  //for (Huesped huesped : lista_huespedes) { 
+	    	
+				  Object[] datos = new Object[7];
+				  
+				  for (int i = 0; i < lista_huespedes.size(); i++) {
+					  datos[0] = lista_huespedes.get(i).getId(); 
+				      datos[1] = lista_huespedes.get(i).getNombre(); 
+				      datos[2] = lista_huespedes.get(i).getApellido(); 
+				      datos[3] = lista_huespedes.get(i).getTelefono();
+				      
+				      modeloHuesped.addRow(datos);
+				      
+				  }
+				  modeloHuesped.fireTableDataChanged();
+				  //modeloHuesped.fireTableDataChanged();
+			      System.out.println(datos);
+			  }
+			  
+	    
 }
