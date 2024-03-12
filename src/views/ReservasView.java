@@ -15,6 +15,8 @@ import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.text.Format;
+import java.util.Date;
+//import java.sql.Date;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
@@ -326,10 +328,10 @@ public class ReservasView extends JFrame {
 					 * valor + ". El medio de pago es: " + forma_pago);
 					 */		
 					
-					String fecha_entrada = "2024-03-11";
-					String fecha_salida = "2024-03-12";
+					Date fecha_entrada = (Date) txtFechaEntrada.getDate();
+					Date fecha_salida = (Date) txtFechaSalida.getDate();
 					Double valor = 10.00;
-					String forma_pago = "Credit Card";
+					String forma_pago = txtFormaPago.getSelectedItem().toString();
 					System.out.printf("La fecha de entrada es: " + fecha_entrada + ". La fecha de salida es: " + fecha_salida + ". El valor a pagar es:  " + valor + ". El medio de pago es: " + forma_pago);
 					
 					

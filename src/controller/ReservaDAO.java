@@ -23,8 +23,8 @@ public class ReservaDAO {
 					System.out.println("En clase Dao, los datos son: " + reserva.getFecha_entrada() + reserva.getFecha_salida() + reserva.getValor() + reserva.getForma_pago());
 				
 					//ps.setInt(1, reserva.getId());
-					ps.setString(1, reserva.getFecha_entrada());
-					ps.setString(2, reserva.getFecha_salida()); 
+					ps.setDate(1, (java.sql.Date) reserva.getFecha_entrada());
+					ps.setDate(2, (java.sql.Date) reserva.getFecha_salida()); 
 					ps.setDouble(3, reserva.getValor());
 					ps.setString(4, reserva.getForma_pago());
 					ps.executeUpdate();
