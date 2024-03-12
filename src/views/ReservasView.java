@@ -319,15 +319,6 @@ public class ReservasView extends JFrame {
 					registro.setVisible(true);
 					
 					//Lee los datos ingresados:
-					/*
-					 * String fecha_entrada = txtFechaEntrada.getDateFormatString(); String
-					 * fecha_salida = txtFechaSalida.getDateFormatString(); Double valor = 10.00;
-					 * String forma_pago = txtFormaPago.getActionCommand();
-					 * System.out.printf("La fecha de entrada es: " + fecha_entrada +
-					 * ". La fecha de salida es: " + fecha_salida + ". El valor a pagar es:  " +
-					 * valor + ". El medio de pago es: " + forma_pago);
-					 */		
-					
 					Date fecha_entrada = (Date) txtFechaEntrada.getDate();
 					Date fecha_salida = (Date) txtFechaSalida.getDate();
 					Double valor = 10.00;
