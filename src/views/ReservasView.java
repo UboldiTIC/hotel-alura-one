@@ -315,6 +315,7 @@ public class ReservasView extends JFrame {
 				txtValor.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 				panel.add(txtValor);
 				txtValor.setColumns(10);
+//Error -> Muestra con error de formato el precio: txtValor. Revisar String.format				
 				txtValor.setText(String.format("%.2f", valorTotal));
 				//txtValor.setText(String.format("%d.2f", valorTotal));
 			}
