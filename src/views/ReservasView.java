@@ -44,6 +44,8 @@ public class ReservasView extends JFrame {
 	int xMouse, yMouse;
 	private JLabel labelExit;
 	private JLabel labelAtras;
+	
+	double valorTotal;
 
 	/**
 	 * Launch the application.
@@ -278,9 +280,48 @@ public class ReservasView extends JFrame {
 		txtFechaSalida.addPropertyChangeListener(new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent evt) {
 				//Activa el evento, después del usuario seleccionar las fechas se debe calcular el valor de la reserva
+				
+				// Si la propiedad "date" cambia en uno de los campos de fecha, calcular el valor total
+			    if ("date".equals(evt.getPropertyName()) && (evt.getSource() == txtFechaEntrada || evt.getSource() == txtFechaSalida)) {
+			        calcularValorTotal();
+			    }	
 			}
+			
+			private void calcularValorTotal() {
+			    // Obtener las fechas y calcular la diferencia de días
+			    Date fecha_entrada = (Date) txtFechaEntrada.getDate();
+			    Date fecha_salida = (Date) txtFechaSalida.getDate();
+			    
+			    System.out.println("Datos para calcular días: " + fecha_entrada + fecha_salida);
+			    
+			    long diferenciaDias = (fecha_salida.getTime() - fecha_entrada.getTime()) / (1000 * 60 * 60 * 24);
+			    
+			    System.out.println("Son: " + diferenciaDias + " dias de vacaciones");
+
+			    // Multiplicar la diferencia de días por el valor fijo y mostrar el resultado
+			    //double valorTotal = diferenciaDias * 65.00;
+			    valorTotal = diferenciaDias * 65.25;
+			    //txtValor.setText(String.format("%.2f", valorTotal));
+			    
+			    System.out.println("El valor total es: " + valorTotal);
+			    
+			    txtValor = new JTextField();
+				txtValor.setBackground(SystemColor.text);
+				txtValor.setHorizontalAlignment(SwingConstants.CENTER);
+				txtValor.setForeground(Color.BLACK);
+				txtValor.setBounds(78, 328, 43, 33);
+				txtValor.setEditable(false);
+				txtValor.setFont(new Font("Roboto Black", Font.BOLD, 17));
+				txtValor.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+				panel.add(txtValor);
+				txtValor.setColumns(10);
+				txtValor.setText(String.format("%.2f", valorTotal));
+				//txtValor.setText(String.format("%d.2f", valorTotal));
+			}
+			
 		});
 		
+		System.out.println("El valor total de la variable global es: " + valorTotal);
 		
 		txtFechaSalida.setDateFormatString("yyyy-MM-dd");
 		txtFechaSalida.getCalendarButton().setBackground(SystemColor.textHighlight);
@@ -298,6 +339,7 @@ public class ReservasView extends JFrame {
 		txtValor.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		panel.add(txtValor);
 		txtValor.setColumns(10);
+		txtValor.setText(String.format("%.2f", valorTotal));
 
 //FORMA DE PAGO
 		txtFormaPago = new JComboBox();
@@ -321,7 +363,7 @@ public class ReservasView extends JFrame {
 					//Lee los datos ingresados:
 					Date fecha_entrada = (Date) txtFechaEntrada.getDate();
 					Date fecha_salida = (Date) txtFechaSalida.getDate();
-					Double valor = 10.00;
+					Double valor = valorTotal;
 					String forma_pago = txtFormaPago.getSelectedItem().toString();
 					System.out.printf("La fecha de entrada es: " + fecha_entrada + ". La fecha de salida es: " + fecha_salida + ". El valor a pagar es:  " + valor + ". El medio de pago es: " + forma_pago);
 					
