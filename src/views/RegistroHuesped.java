@@ -20,6 +20,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.text.Format;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 import javax.swing.SwingConstants;
@@ -260,18 +261,24 @@ public class RegistroHuesped extends JFrame {
 				//Lee los datos ingresados:
 				String name = txtNombre.getText();
 				String surname = txtApellido.getText();
+				Date date_of_birth = (Date) txtFechaN.getDate();
+				String nationality = txtNacionalidad.getSelectedItem().toString();
 				String phone = txtTelefono.getText();
-				System.out.printf("El nombre es " + name + " " + surname + " " + phone);
-				System.out.println(" ");
+				int id_reservation = txtNreserva.getColumns();
+				System.out.printf("El nombre es " + name + " " + surname + " " + date_of_birth + nationality + phone + id_reservation);
+				
 				//Envía los datos al modelo
-				Huesped huesped1 = new Huesped();
-				huesped1.setNombre(name);
-				huesped1.setApellido(surname);
-				huesped1.setTelefono(phone);
-				System.out.println("Los datos son: " + huesped1.getNombre() + huesped1.getApellido() + huesped1.getTelefono());
+				Huesped huesped = new Huesped();
+				huesped.setNombre(name);
+				huesped.setApellido(surname);
+				huesped.setFecha_de_nacimiento(date_of_birth);
+				huesped.setNacionalidad(nationality);
+				huesped.setTelefono(phone);
+				huesped.setId_reserva(id_reservation);
+				//System.out.println("Los datos son: " + huesped.getNombre() + huesped.getApellido() + huesped.getTelefono());
 				//Llama a la clase DAO y los carga en la DB
-				HuespedDAO huespedDao = new HuespedDAO();
-				HuespedDAO.crearHuespedDB(huesped1);
+				HuespedDAO cargarHuesped = new HuespedDAO();
+				HuespedDAO.crearHuespedDB(huesped);
 				
 //Falta agregar: Fecha de nacimiento, Nacionalidad, Número de reserva y establecer filtros para ingresar datos válidos.
 //Estos datos deben ser agregados al modelo y a la db.

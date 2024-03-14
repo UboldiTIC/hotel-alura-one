@@ -322,7 +322,9 @@ public class ReservasView extends JFrame {
 			
 		});
 		
-		System.out.println("El valor total de la variable global es: " + valorTotal);
+//Muestra el valor de la variable global, carga antes de asignar. Sólo tiene valor dentro del método.
+//Así funciona todo menos mostrar el valor completo en el campo txtValor: xx0.50
+System.out.println("El valor total de la variable global es: " + valorTotal);
 		
 		txtFechaSalida.setDateFormatString("yyyy-MM-dd");
 		txtFechaSalida.getCalendarButton().setBackground(SystemColor.textHighlight);

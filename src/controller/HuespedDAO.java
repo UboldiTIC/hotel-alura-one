@@ -21,19 +21,30 @@ public class HuespedDAO {
 			PreparedStatement ps=null;
 			
 			try {
-				String query = "INSERT INTO huespedes(`nombre`, `apellido`, `telefono`) VALUES (?, ?, ?)";
+				String query = "INSERT INTO tb_huespedes(`nombre`, `apellido`, `fecha_de_nacimiento`, `nacionalidad`, `telefono`, `id_reserva`) VALUES ('?', '?', '?', '?', '?', ?)";
 				ps=connexion.prepareStatement(query);
 				
-				System.out.println("En clase Dao, los datos son: " + huesped.getNombre() + huesped.getApellido() + huesped.getTelefono());
-			
-				ps.setString(1, huesped.getNombre());
-				ps.setString(2, huesped.getApellido());
-				  //ps.setString(3, huesped.getNacionalidad()); 
-				ps.setString(3, huesped.getTelefono()); 
+				
+				  System.out.println("En clase Dao, los datos son: "); 
+				  huesped.getNombre(); 
+				  huesped.getApellido(); 
+				  huesped.getFecha_de_nacimiento(); 
+				  huesped.getNacionalidad();
+				  huesped.getTelefono();
+				  huesped.getId_reserva();
+				  
+				  ps.setString(1, huesped.getNombre()); 
+				  ps.setString(2, huesped.getApellido());
+				  ps.setDate(3, new java.sql.Date(huesped.getFecha_de_nacimiento().getTime()));
+				  ps.setString(4, huesped.getNacionalidad()); 
+				  ps.setString(5,huesped.getTelefono()); 
+				  ps.setInt(6, huesped.getId());
+				 
 				ps.executeUpdate();
 				System.out.println("Nuevo huesped agregado");
 			} catch (SQLException ex) {
 				System.out.println(ex);
+				System.out.println("No se logró ingresar el huesped");
 			}
 		} catch (SQLException e) {
 			System.out.println(e);
