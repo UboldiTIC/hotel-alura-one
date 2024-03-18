@@ -21,7 +21,9 @@ public class HuespedDAO {
 			PreparedStatement ps=null;
 			
 			try {
-				String query = "INSERT INTO tb_huespedes(`nombre`, `apellido`, `fecha_de_nacimiento`, `nacionalidad`, `telefono`, `id_reserva`) VALUES ('?', '?', '?', '?', '?', ?)";
+				String query = "INSERT INTO tb_huespedes(`nombre`, `apellido`, `fecha_de_nacimiento`, `nacionalidad`, `telefono`, `id_reserva`) VALUES (?, ?, ?, ?, ?, ?)";
+				//String query = "INSERT INTO tb_huespedes(`nombre`, `apellido`, `fecha_de_nacimiento`, `nacionalidad`, `telefono`, `id_reserva`) VALUES ('?', '?', '?', '?', '?', '?')";
+
 				ps=connexion.prepareStatement(query);
 				
 				
