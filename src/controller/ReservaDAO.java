@@ -11,9 +11,13 @@ import model.Huesped;
 import model.Reserva;
 import views.Busqueda;
 
+
+
 public class ReservaDAO {
 	
-	//CREAR RESERVA	
+	static int ultimoID;
+	
+		//CREAR RESERVA	
 		public static void crearReservaDB(Reserva reserva) {
 			Connexion db_connexion = new Connexion();
 			
@@ -44,7 +48,7 @@ public class ReservaDAO {
 		}
 		
 		//BUSCAR ID_RESERVA
-		public static void buscarIdReserva() {
+		public static int buscarIdReserva() {
 			Connexion db_connexion = new Connexion();
 	        PreparedStatement ps=null;
 	        ResultSet rs=null;
@@ -52,28 +56,20 @@ public class ReservaDAO {
 			try(Connection connexion = db_connexion.get_connection()) {			
 				String query = "SELECT MAX(id) AS id FROM reservas";
 				ps=connexion.prepareStatement(query);
-				
-				// Ejecutar consulta
 	            rs = ps.executeQuery(query);
 
-	            // Obtener el último ID
+	            // Ultimo Id de reserva + 1
 	            int ultimoID = 0;
 	            if (rs.next()) {
-	                ultimoID = rs.getInt("id");
+	                ultimoID = rs.getInt("id") + 1;
 	            }
-	            
-	            Reserva reserva = new Reserva();
-	            reserva.setId(ultimoID);
-
-	            // Imprimir el último ID
-	            System.out.println("El último ID autoincrementable es: " + ultimoID);
-
+	            //Mostrar el último ID en Registro de Húespedes.
+	            return ultimoID;
 			} catch (SQLException e) {
 				System.out.println("No se pudo buscar el último id de reservas");
 				System.out.println(e);
 			}
-			
-			
+			return ultimoID;
 		}
 
 }

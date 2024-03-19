@@ -10,7 +10,8 @@ public class MainTest {
 	public static void main(String[] args) {
 		
 		ReservaDAO reservaDAO = new ReservaDAO();
-		reservaDAO.buscarIdReserva();
+		//reservaDAO.buscarIdReserva();
+		System.out.println(reservaDAO.buscarIdReserva());
 		
 		/*
 		 * Huesped huesped = new Huesped();

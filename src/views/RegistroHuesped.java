@@ -210,13 +210,6 @@ public class RegistroHuesped extends JFrame {
 		lblNumeroReserva.setFont(new Font("Roboto Black", Font.PLAIN, 18));
 		contentPane.add(lblNumeroReserva);
 		
-		
-		ReservaDAO reservaDAO = new ReservaDAO();
-		reservaDAO.buscarIdReserva();
-		
-		Reserva reserva = new Reserva();
-		String ultima_reserva = Integer.toString(reserva.getId());
-		
 		txtNreserva = new JTextField();
 		txtNreserva.setFont(new Font("Roboto", Font.PLAIN, 16));
 		txtNreserva.setBounds(560, 495, 285, 33);
@@ -224,8 +217,11 @@ public class RegistroHuesped extends JFrame {
 		txtNreserva.setBackground(Color.WHITE);
 		txtNreserva.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		
+		ReservaDAO reservaDAO = new ReservaDAO();
+		reservaDAO.buscarIdReserva();
+		System.out.println("El último id es: " + reservaDAO.buscarIdReserva());
+		txtNreserva.setText(Integer.toString(reservaDAO.buscarIdReserva()));
 		
-		txtNreserva.setText(ultima_reserva);
 		
 //Agregar el resultado de ID y luego enviar a la base de datos
 		contentPane.add(txtNreserva);
@@ -359,7 +355,6 @@ public class RegistroHuesped extends JFrame {
 		labelExit.setForeground(SystemColor.black);
 		labelExit.setFont(new Font("Roboto", Font.PLAIN, 18));
 	}
-	
 	
 	//Código que permite mover la ventana por la pantalla según la posición de "x" y "y"	
 	 private void headerMousePressed(java.awt.event.MouseEvent evt) {
