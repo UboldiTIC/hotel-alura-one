@@ -9,6 +9,9 @@ public class MainTest {
 	
 	public static void main(String[] args) {
 		
+		ReservaDAO reservaDAO = new ReservaDAO();
+		reservaDAO.buscarIdReserva();
+		
 		/*
 		 * Huesped huesped = new Huesped();
 		 * 

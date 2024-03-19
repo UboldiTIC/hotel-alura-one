@@ -331,18 +331,20 @@ System.out.println("El valor total de la variable global es: " + valorTotal);
 		txtFechaSalida.setBorder(new LineBorder(new Color(255, 255, 255), 0));
 		panel.add(txtFechaSalida);
 		
-//VALOR: Debe mostrarlo en el campo y debe enviarlo a la DB cuando se presiona Siguiente. 
-		txtValor = new JTextField();
-		txtValor.setBackground(SystemColor.text);
-		txtValor.setHorizontalAlignment(SwingConstants.CENTER);
-		txtValor.setForeground(Color.BLACK);
-		txtValor.setBounds(78, 328, 43, 33);
-		txtValor.setEditable(false);
-		txtValor.setFont(new Font("Roboto Black", Font.BOLD, 17));
-		txtValor.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-		panel.add(txtValor);
-		txtValor.setColumns(10);
-		txtValor.setText(String.format("%.2f", valorTotal));
+		/*
+		 * //VALOR: Debe mostrarlo en el campo y debe enviarlo a la DB cuando se
+		 * presiona Siguiente. txtValor = new JTextField();
+		 * txtValor.setBackground(SystemColor.text);
+		 * txtValor.setHorizontalAlignment(SwingConstants.CENTER);
+		 * txtValor.setForeground(Color.BLACK); txtValor.setBounds(78, 328, 43, 33);
+		 * txtValor.setEditable(false); txtValor.setFont(new Font("Roboto Black",
+		 * Font.BOLD, 17));
+		 * txtValor.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+		 * panel.add(txtValor); txtValor.setColumns(10);
+		 * 
+		 * //ver cómo viene de siguiente, creo que estoy dando formato dos veces
+		 * txtValor.setText(String.format("%.2f", valorTotal));
+		 */
 
 //FORMA DE PAGO
 		txtFormaPago = new JComboBox();
@@ -390,11 +392,21 @@ System.out.println("El valor total de la variable global es: " + valorTotal);
 			}						
 		});
 		btnsiguiente.setLayout(null);
-		btnsiguiente.setBackground(SystemColor.textHighlight);
+		
+		//btnsiguiente.setBackground(SystemColor.textHighlight);
+		btnsiguiente.setBackground(new Color(12, 138, 199));
+		
 		btnsiguiente.setBounds(238, 493, 122, 35);
 		panel.add(btnsiguiente);
 		btnsiguiente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+		JLabel labelSiguiente = new JLabel("SIGUIENTE");
+		labelSiguiente.setHorizontalAlignment(SwingConstants.CENTER);
+		labelSiguiente.setForeground(Color.WHITE);
+		labelSiguiente.setFont(new Font("Roboto", Font.PLAIN, 18));
+		labelSiguiente.setBounds(0, 0, 122, 35);
+		btnsiguiente.add(labelSiguiente);
+		
 
 	}
 		

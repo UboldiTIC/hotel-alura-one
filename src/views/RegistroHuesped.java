@@ -26,7 +26,9 @@ import java.awt.Toolkit;
 import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
 import model.Huesped;
+import model.Reserva;
 import controller.HuespedDAO;
+import controller.ReservaDAO;
 
 @SuppressWarnings("serial")
 public class RegistroHuesped extends JFrame {
@@ -208,12 +210,24 @@ public class RegistroHuesped extends JFrame {
 		lblNumeroReserva.setFont(new Font("Roboto Black", Font.PLAIN, 18));
 		contentPane.add(lblNumeroReserva);
 		
+		
+		ReservaDAO reservaDAO = new ReservaDAO();
+		reservaDAO.buscarIdReserva();
+		
+		Reserva reserva = new Reserva();
+		String ultima_reserva = Integer.toString(reserva.getId());
+		
 		txtNreserva = new JTextField();
 		txtNreserva.setFont(new Font("Roboto", Font.PLAIN, 16));
 		txtNreserva.setBounds(560, 495, 285, 33);
 		txtNreserva.setColumns(10);
 		txtNreserva.setBackground(Color.WHITE);
 		txtNreserva.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+		
+		
+		txtNreserva.setText(ultima_reserva);
+		
+//Agregar el resultado de ID y luego enviar a la base de datos
 		contentPane.add(txtNreserva);
 		
 		JSeparator separator_1_2 = new JSeparator();
