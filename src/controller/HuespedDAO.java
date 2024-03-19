@@ -21,7 +21,7 @@ public class HuespedDAO {
 			PreparedStatement ps=null;
 			
 			try {
-				String query = "INSERT INTO tb_huespedes(`nombre`, `apellido`, `fecha_de_nacimiento`, `nacionalidad`, `telefono`) VALUES (?, ?, ?, ?, ?)";
+				String query = "INSERT INTO tb_huespedes(`nombre`, `apellido`, `fecha_de_nacimiento`, `nacionalidad`, `telefono`, `id_reserva`) VALUES (?, ?, ?, ?, ?, ?)";
 				ps=connexion.prepareStatement(query);
 				
 				  huesped.getNombre(); 
@@ -29,7 +29,8 @@ public class HuespedDAO {
 				  huesped.getFecha_de_nacimiento(); 
 				  huesped.getNacionalidad();
 				  huesped.getTelefono();
-				 // huesped.getId_reserva();
+				  huesped.getId_reserva();
+				  System.out.println("El ultimo id para ingresar como fk es: " + huesped.getId_reserva());
 				  //Repasar claves foraneas
 				  
 				  ps.setString(1, huesped.getNombre()); 
@@ -37,7 +38,7 @@ public class HuespedDAO {
 				  ps.setDate(3, new java.sql.Date(huesped.getFecha_de_nacimiento().getTime()));
 				  ps.setString(4, huesped.getNacionalidad()); 
 				  ps.setString(5,huesped.getTelefono());
-				 // ps.setInt(6, huesped.getId_reserva());
+				  ps.setInt(6, huesped.getId_reserva());
 				 
 				ps.executeUpdate();
 				System.out.println("Nuevo huesped agregado");

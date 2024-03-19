@@ -216,14 +216,11 @@ public class RegistroHuesped extends JFrame {
 		txtNreserva.setColumns(10);
 		txtNreserva.setBackground(Color.WHITE);
 		txtNreserva.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-		
+		//Trae el id anterior de la base de datos reservas + 1 y lo envia como fk a huespedes;
 		ReservaDAO reservaDAO = new ReservaDAO();
 		reservaDAO.buscarIdReserva();
 		System.out.println("El último id es: " + reservaDAO.buscarIdReserva());
 		txtNreserva.setText(Integer.toString(reservaDAO.buscarIdReserva()));
-		
-		
-//Agregar el resultado de ID y luego enviar a la base de datos
 		contentPane.add(txtNreserva);
 		
 		JSeparator separator_1_2 = new JSeparator();
@@ -274,8 +271,8 @@ public class RegistroHuesped extends JFrame {
 				Date date_of_birth = (Date) txtFechaN.getDate();
 				String nationality = txtNacionalidad.getSelectedItem().toString();
 				String phone = txtTelefono.getText();
-				int id_reservation = txtNreserva.getColumns();
-				System.out.printf("El nombre es " + name + " " + surname + " " + date_of_birth + nationality + phone + id_reservation);
+				int id_reservation = Integer.parseInt(txtNreserva.getText());
+				System.out.printf("El id reservation es: " + id_reservation);
 				
 				//Envía los datos al modelo
 				Huesped huesped = new Huesped();
@@ -290,8 +287,7 @@ public class RegistroHuesped extends JFrame {
 				HuespedDAO cargarHuesped = new HuespedDAO();
 				HuespedDAO.crearHuespedDB(huesped);
 				
-//Falta agregar: Fecha de nacimiento, Nacionalidad, Número de reserva y establecer filtros para ingresar datos válidos.
-//Estos datos deben ser agregados al modelo y a la db.
+//Falta establecer filtros para ingresar datos válidos.
 			}
 		});
 		btnguardar.setLayout(null);
